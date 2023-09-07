@@ -1,0 +1,17 @@
+// Package yang berisikan konstan dan fungsi matematika
+// LANGSUNG AJA >> https:/golang.org/pkg/math
+
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+func main() {
+	fmt.Println(math.Round(2.1))  // Pembulatan ke terdekat
+	fmt.Println(math.Max(12, 23)) // Menentukan nilai max
+	fmt.Println(math.Floor(2.1))  //  Dipaksa, bulat ke bawah
+	fmt.Println(math.Ceil(2.1))   // Dipaksa, bulat  ke atas
+	// Dan masih banyak lagi
+}

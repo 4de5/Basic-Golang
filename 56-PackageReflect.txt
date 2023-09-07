@@ -1,0 +1,57 @@
+/*
+REFLECTION(cerminan) --> umumnya ada di bahasa lain
+		   --> kita bisa melihat struktur kode kita pada saat kode di run
+		   --> berguna ketika ingin membuat librari general sehingga mudah di pake
+
+https://golang.org/pkg/reflect/
+*/
+
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+type Sample struct {
+	Kolom1 string
+}
+
+type StructTag struct {
+	//Pembuatan tag cocok untuk library melakukan validasi
+	Field1 string `required:"true" max:"10"` //petik uler
+	Field2 int
+}
+
+func IsValid(data interface{}) bool {
+	t := reflect.TypeOf(data)
+	for i := 0; i < t.NumField(); i++ {
+		field := t.Field(i)
+		if field.Tag.Get("required") == "true" {
+			value := reflect.ValueOf(data).Field(i).Interface()
+			if value == "" {
+				return false
+			}
+		}
+	}
+	return true
+}
+
+func main() {
+	sample := Sample{"Asep"}
+	sampleType := reflect.TypeOf(sample) //sampleT = sample
+	structField := sampleType.Field(0)   // structField = Bidang ke 0 dari sampleTy.
+	fmt.Println(structField.Name)        // .Name = memunculkan nama field
+	fmt.Println(sampleType.Field(0).Name)
+	fmt.Println(sampleType.NumField()) // Ada berapa field
+
+	//VALIDATION LIBRARY
+	values := StructTag{"Oke", 1}
+	valuesType := reflect.TypeOf(values).Field(0).Name
+	fmt.Println(valuesType)
+	fmt.Println(IsValid(values))
+	values.Field1 = ""           //Merubah nama field
+	fmt.Println(values)          // Cek Perubahan
+	fmt.Println(IsValid(values)) // Cek Validasi
+
+}

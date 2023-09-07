@@ -1,0 +1,48 @@
+/*
+	Package yang berisi fungsionalitas untuk mengakses fitur OS secara independen
+
+	https://golang.org/pkg/os
+
+	PUTER ULANG VIDEO AJA, AKUPUN KURANG PAHAM
+*/
+
+package main
+
+import (
+	"fmt"
+	"os"
+)
+
+func main() {
+	args := os.Args // Mengimpor argumen dengan pkg OS
+	fmt.Println("Argumen:")
+	fmt.Println(args)
+	// Mencetak argumen [0] yang berisi lokasi data biner disimpan
+
+	/*
+		Ketik --> go run .\47-PackageOS.go asep dwi saputra
+		Maka akan menambah argumen "asep", "dwi", "saputra"
+		Jadi ada total 4 args
+	*/
+
+	// Mengambil hostname
+	hostName, err := os.Hostname()
+	if err == nil {
+		fmt.Println("Hostname:", hostName)
+	} else {
+		fmt.Println("Eror:", err.Error())
+	}
+
+	// Ambil data convig misal
+	username := os.Getenv("APP_USERNAME")
+	password := os.Getenv("APP_PASSWORD")
+	fmt.Println(username)
+	fmt.Println(password)
+	/*
+		KHUSUS MAC KAYANYA
+			Terminal --> export APP_USERNAME = root
+						 export APP_PASSWORD = root
+
+			baru go run
+	*/
+}

@@ -1,0 +1,25 @@
+/**
+Gopath --> tmpat menyimpan projek, library yang kita buat.
+Gopath --> tmpat menandai projek Go, komputer akan mendeteksi file go di sini.
+
+Ini berguna ketika kita akn mengimpor proyek, library dari luar.
+Membuat aplikasi lebih dari 1 file(interaksi antar file).
+
+Cara atur:
+1. Win >> Search >> Edit the System Environtment Variabel
+2. System Variables >> New >> Tentukan nama folder
+anjai jebul.e sistem variabel asus sing atas
+
+3. buat folder "src" untuk isi projek
+4. buat folder projek
+
+AGHH mesih eror
+import\44-Package&Import-2.go:4:2: package belajar-go-with-pzn/helper is not in GOROOT (C:\Program Files\Go\src\belajar-go-with-pzn\helper)
+
+Tak Coba! Katane v1.11+ ra perlu atur gopath, tinggal gini(Atur Go Modules):
+go mod init belajar-go-with-pzn
+lanjut
+go mod tidy
+
+BISA DONGG
+*/

@@ -1,0 +1,41 @@
+// Implementasi struktur data double linked list di GOLANG
+/*
+	Double linked list?? Cek video aja
+		nil | x | y | z | nil
+	tidak bisa pindah-pindah langsung karena gada index
+*/
+
+// LANGSUNG AJA >> https://golang.org/pkg/container/list/
+
+package main
+
+import (
+	"container/list"
+	"fmt"
+)
+
+func main() {
+	//Membuat ListContainer dan Mengisi
+	data := list.New()
+	data.PushBack("Asep")    // list 1 ke belakang
+	data.PushBack("Dwi")     // list selanjutnya paling belakang
+	data.PushBack("Saputra") // list selanjutnya paling belakang
+	data.PushFront("Nama")   // list selanjutnya paling DEPAN!!!!!
+
+	//Pemanggilan
+	fmt.Println(data.Back().Value)               // Cetak data paling belakang
+	fmt.Println(data.Back().Prev().Prev().Value) // Cetak data paling belakang, balik ke depan 2x = Asep
+	fmt.Println(data.Front().Value)              // Cetak data paling depan
+	fmt.Println(data.Front().Next().Value)       // Cetak data paling depan, lanjut 1x = Asep
+	//  Awas kalo  mentok jadi <nil>
+
+	// Pengulangan - Memanggil semua data
+	//  Depan >> Belakang
+	for element := data.Front(); element != nil; element = element.Next() {
+		fmt.Println(element.Value)
+	}
+	//  Belakang >> Depan
+	for element := data.Back(); element != nil; element = element.Prev() {
+		fmt.Println(element.Value)
+	}
+}

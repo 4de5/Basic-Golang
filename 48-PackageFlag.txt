@@ -1,0 +1,36 @@
+/*
+	Digunakan untuk memparsing(uraikan) command line argumen(argumrn baris perintah)
+	... ini berkaitan dengan OS tadi, disana kita menginput command line juga kan
+
+	https://golang.org/pkg/flag
+*/
+
+package main
+
+import (
+	"flag"
+	"fmt"
+)
+
+func main() {
+	var host *string = flag.String("host", "localhost", "Mengambil host disebut localhost")
+	username := flag.String("username", "root", "Mengambil username disebut root")
+	password := flag.String("password", "root", "PUT ur database password")
+	//number := flag.Int("number", 0, "PUT ur database number")
+
+	flag.Parse() // Ini Wajib kalo ga dipake coba run aja
+
+	//fmt.Println(host, username, password) // 0xc0000442b0 0xc0000442c0 0xc0000442d0
+	// Kenapa begitu? karena belum menggunakan pointer | variabel bersifat Pointer PbR
+	fmt.Println(*host, *username, *password /* ,*number */)
+
+	/*
+		TERMINAL
+			 go run .\48-PackageFlag.go -host=asep -username=laptop -password=adadeh
+			// Maka --> pencetakan akan di update bukan default(localhost root root)
+
+			BEDAKAN
+			go run .\48-PackageFlag.go -host=asep -username=laptop -password=adadeh -number=1
+			// Karena belum membuat flag Number
+	*/
+}

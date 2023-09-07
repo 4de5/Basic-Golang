@@ -1,0 +1,40 @@
+/*
+Fungsionalitas management waktu
+
+https://golang.org/pkg/time/
+*/
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	//Manual Sekarang
+	buatWaktu := time.Now()
+	fmt.Println(buatWaktu)
+	fmt.Println(buatWaktu.Year())
+	fmt.Println(buatWaktu.Month())
+	fmt.Println(buatWaktu.Date())
+	fmt.Println(buatWaktu.Hour())
+	fmt.Println(buatWaktu.Minute())
+	fmt.Println(buatWaktu.Second())
+	fmt.Println(buatWaktu.Nanosecond())
+
+	//Langsung Manual
+	buatTgl := time.Date(2020, 12, 30, 10, 59, 59, 100, time.UTC)
+	// time.UTC = zona waktu
+	fmt.Println(buatTgl)
+
+	// Parse - String ke time
+	layout := "2006-01-02" // Knp 2006...? standarnya gitu thn-bln-tgl
+	//layout := time.RFC3339 // Salah 1 standar penulisan waktu diatas
+	parse, err := time.Parse(layout, "2021-12-30")
+	if err == nil {
+		fmt.Println(parse)
+	} else {
+		fmt.Println("Eror dengan pesan:", err.Error())
+	}
+
+}

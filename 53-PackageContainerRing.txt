@@ -1,0 +1,44 @@
+// Sama seperti di List tapi di ujung balik ke awal
+/*
+	Double linked ring?? Cek video aja
+		HEAD --> | x | y | z | ... | x | y | ....
+*/
+
+// LANGSUNG AJA >> https://golang.org/pkg/container/ring/
+
+package main
+
+import (
+	"container/ring"
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	var data *ring.Ring = ring.New(3) // atau <data := ring.New(3)>
+
+	//Isi Manual - NOT RECOMMEND
+	data.Value = "Asep"
+	data2 := data.Next()
+	data2.Value = "Dwi"
+	data3 := data.Next().Next()
+	data3.Value = "Saputra"
+
+	//ISI DATA
+	for i := 0; i < data.Len(); i++ {
+		data.Value = "Value " + strconv.FormatInt(int64(i), 10)
+		data = data.Next()
+	} // Non-Aktifkan ini untuk melihat data manual
+
+	// Cetak Data - NOT RECOMMEND
+	fmt.Println(data)
+	fmt.Println(*data) //  Menurut tutor gini
+
+	// CETAK DATA
+	data.Do(func(x interface{}) {
+		fmt.Println(x)
+	})
+
+	// Kadang EROR = ANEH
+	// Cek File tempcoderun, yang kadang tiba-tiba nongol
+}

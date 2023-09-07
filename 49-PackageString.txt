@@ -1,0 +1,43 @@
+/*
+Berisikan fungsi-fungsi untuk memanipulasi tipe data string
+*/
+
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	fmt.Println(strings.Split("Asep Dwi Saputra", " ")) // [Asep Dwi Saputra]
+	// Memotong "Asep Dwi Saputra" dengan separator " "  dibuat slice
+
+	fmt.Println(strings.Contains("Asep Dwi Saputra", "Putra")) // False
+	fmt.Println(strings.Contains("Asep Dwi Saputra", "Asep"))  // True
+	// Cek apakah "Asep Dwi Saputra" Contains(mengandung) "Putra" = F
+
+	fmt.Println(strings.Trim("      Asep  ", " "))    // Asep
+	fmt.Println(strings.Trim("a      Asep   a", " ")) // gagal
+	// Memotong " " di kanan-kiri "      Asep     "
+
+	fmt.Println(strings.ToUpper("Asep Dwi Saputra")) // ASEP DWI SAPUTRA
+	fmt.Println(strings.ToLower("Asep Dwi Saputra")) // asep dwi saputra
+	//fmt.Println(strings.ToTitle("asep Dwi Saputra")) // ASEP DWI SAPUTRA
+	// Membesarkan-Mengecilkan
+
+	fmt.Println(strings.ReplaceAll("Asep Putra Asep Dwi Saputra", "Asep", "Oke"))
+	// MeReplace "Asep" ke "Oke" dalam kalimat yg ditentukan
+
+	//strings.Builder
+	var nama strings.Builder // inisialisasi var
+
+	nama.WriteString("@Asep  ") //mengisi variabel
+	nama.WriteString("Dwi  ")
+	nama.WriteString("Saputra")
+	tangkap := nama.String() //tangkap semua inputan(dan bungkus ulang)
+
+	fmt.Println(nama.String()) //tanpa bungkus juga bisa
+	fmt.Println(tangkap)       //@Asep  Dwi  Saputra
+
+}
