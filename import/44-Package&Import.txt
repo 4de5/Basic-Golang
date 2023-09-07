@@ -1,0 +1,10 @@
+package main
+
+import (
+	"belajar-go-with-pzn/helper"
+	"fmt"
+)
+
+func main() {
+	helper.SayHello("Asep")
+}

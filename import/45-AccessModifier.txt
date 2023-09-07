@@ -1,0 +1,10 @@
+package main
+
+import (
+	"belajar-go-with-pzn/helper"
+)
+
+func main() {
+	helper.SayHi("Bro")
+	// helper.sayHi("Bro") // eror
+}
